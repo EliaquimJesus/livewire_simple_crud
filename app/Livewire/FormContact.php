@@ -22,7 +22,13 @@ class FormContact extends Component
         );
 
         // temporary store in log file
-        Log::info('Novo contacto: ' . $this->name . '-' . $this->email . '-' . $this->phone);
+        Log::info('Novo contacto: ' . $this->name . ' - ' . $this->email . ' - ' . $this->phone);
+
+        // Clear form
+        // $this->name = '';
+        // $this->email = '';
+        // $this->phone = '';
+        $this->reset();
     }
     
     public function render(): View
