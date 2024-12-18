@@ -23,5 +23,13 @@
             <button class="btn btn-secondary px-5">Save</button>
         </div>
 
+        @if($error)
+        <div class="alert alert-danger text-center mt-3">{{ $error }}</div>
+        @endif
+
+        @if($success)
+        <div class="alert alert-success text-center mt-3">{{ $success }}</div>
+        @endif
+
     </form>
 </div>
