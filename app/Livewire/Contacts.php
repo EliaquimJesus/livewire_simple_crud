@@ -14,11 +14,16 @@ class Contacts extends Component
 
     public function mount(): void
     {
-        $this->contacts = Contact::all();
+        $this->updateContacts();
     }
 
     #[On('contact-created')]
     public function updateContactList()
+    {
+        $this->updateContacts();
+    }
+
+    private function updateContacts(): void
     {
         $this->contacts = Contact::all();
     }
