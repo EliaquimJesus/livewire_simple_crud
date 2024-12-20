@@ -1,4 +1,4 @@
-<div class="mt-5">
+<div>
     <div class="text-center">
         <p>Do you really want to delete this contact?</p>
         <p>Name: <br><strong class="text-white">{{ $contact->name }}</strong></p>

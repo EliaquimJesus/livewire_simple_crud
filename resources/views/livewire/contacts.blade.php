@@ -13,7 +13,10 @@
             <div class="col">Email: {{ $contact->email }}</div>
             <div class="col">Phone: {{ $contact->phone }}</div>
             <div class="col">
-                <a href="{{ route('contacts.delete', ['id' => encrypt($contact->id)]) }}">Delete</a>
+                <a href="{{ route('contacts.edit', ['id' => encrypt($contact->id)]) }}"
+                    class="btn btn-sm btn-success">Update</a>
+                <a href="{{ route('contacts.delete', ['id' => encrypt($contact->id)]) }}"
+                    class="btn btn-sm btn-danger">Delete</a>
             </div>
         </div>
     </div>
