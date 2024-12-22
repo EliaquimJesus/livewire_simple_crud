@@ -13,7 +13,7 @@ class Contacts extends Component
     use WithPagination;
 
     public string $search = '';
-    private int $contactsPerPage = 4;
+    private int $contactsPerPage = 5;
 
     #[On('contact-created')]
     public function updateContactList()
