@@ -3,33 +3,32 @@
 namespace App\Livewire;
 
 use App\Models\Contact;
-use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Contacts extends Component
 {
-    public Collection $contacts;
+    use WithPagination;
 
-    public function mount(): void
-    {
-        $this->updateContacts();
-    }
+    public string $search = '';
+    private int $contactsPerPage = 4;
 
     #[On('contact-created')]
     public function updateContactList()
-    {
-        $this->updateContacts();
-    }
-
-    private function updateContacts(): void
-    {
-        $this->contacts = Contact::all();
-    }
+    {}
     
     public function render(): View
     {
-        return view('livewire.contacts');
+        $contacts = null;
+        
+        $contacts = $this->search ? Contact::where('name', 'like', '%' . $this->search . '%')
+                                                ->orWhere('email', 'like', '%' . $this->search . '%')
+                                                ->orWhere('phone', 'like', '%' . $this->search . '%')
+                                                ->paginate($this->contactsPerPage)
+                                                 : Contact::paginate($this->contactsPerPage);
+
+        return view('livewire.contacts')->with('contacts', $contacts);
     }
 }
